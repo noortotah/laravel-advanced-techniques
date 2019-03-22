@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Observers\UserObserver;
+
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,4 +38,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()        
+    {
+       parent::boot();
+       // static::creating(function($model)
+       // {
+       //     $model->team_id = \DB::table('teams')->inRandomOrder()->first()->id;
+       // });
+       User::observe(UserObserver::class);
+    }
 }
