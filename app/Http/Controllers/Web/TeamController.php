@@ -3,12 +3,18 @@
 namespace App\Http\Controllers\Web;
 
 use App\Team;
+use App\Repositories\TeamRepository;
 use App\Http\Requests\StoreTeamRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Exceptions\ActionNotCompletedException;
 class TeamController extends Controller
 {
+    public function __construct(TeamRepository $teamRepository)
+    {
+        $this->teamRepo = $teamRepository;
+        $this->authorizeResource(Team::class);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -49,7 +55,7 @@ class TeamController extends Controller
      */
     public function show(Team $team)
     {
-        //
+        return response()->json($team);
     }
 
     /**
@@ -84,5 +90,11 @@ class TeamController extends Controller
     public function destroy(Team $team)
     {
         //
+    }
+
+    public function points(Team $team)
+    {
+        $this->authorize('view', $team);
+        return response()->json($this->teamRepo->points($team));
     }
 }
