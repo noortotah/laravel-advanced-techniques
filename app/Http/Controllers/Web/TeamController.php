@@ -6,7 +6,7 @@ use App\Team;
 use App\Http\Requests\StoreTeamRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Exceptions\ActionNotCompletedException;
 class TeamController extends Controller
 {
     /**
@@ -60,7 +60,7 @@ class TeamController extends Controller
      */
     public function edit(Team $team)
     {
-        //
+        throw new ActionNotCompletedException();
     }
 
     /**

@@ -28,9 +28,13 @@ Route::namespace('Web')->group(function(){
 	})->name('activateTeam')->middleware('signed');
 });
 
+/*
+http://localhost:8000/square?email=replace_by_real_user_email 
+to make it work
+*/
 Route::get('/square/{number?}', function($number = 10) {
     return $number * $number;
-});
+})->middleware('auth:email');
 
 Auth::routes();
 
