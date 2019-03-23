@@ -23,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        \Blade::directive('inputTextBox', function($field){
+            return "<?php echo \App\InputBox::text($field); ?>";
+        });
     }
 }
