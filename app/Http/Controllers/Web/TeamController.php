@@ -22,7 +22,43 @@ class TeamController extends Controller
      */
     public function index()
     {
-        return Team::paginate();
+        // return Team::paginate();
+        // return Team::all()->firstWhere('users_count', '>' , 2);
+        // return Team::all()->filter(function ($team)
+        // {
+        //     return $team->users_count > 2;
+        // });
+        // return Team::all()->reject(function ($team)
+        // {
+        //     return $team->users_count > 2;
+        // });
+        // return Team::all()->search(function ($team)
+        // {
+        //     return $team->users_count > 2;
+        // });
+
+        // return Team::all()->mapToGroups(function($team){
+        //         return [$team->users_count => $team->id];
+        // });
+
+        // return Team::all()->reduce(function($carry, $team){
+        //     return $carry + $team->users_count;
+        // });
+
+        // return Team::all()->sortBy('users_count')->values();
+        // return Team::all()->pluck('title');
+        // return Team::all()->transform(function($team){
+        //     $team->title = strtoupper($team->title);
+        //     return $team;
+        // });
+
+        $collection1 =  Team::all();
+        $collection2 = $collection1->nth(2);
+
+        return $collection2;
+
+
+
     }
 
     /**
