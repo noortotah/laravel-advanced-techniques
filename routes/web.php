@@ -46,3 +46,6 @@ Route::get('/square/{number?}', function($number = 10) {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::resource('/posts', 'PostController');

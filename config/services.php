@@ -52,6 +52,11 @@ return [
         'client_id' => env('TWITTER_ID'),
         'client_secret' => env('TWITTER_SECRET'),
         'redirect' => env('TWITTER_REDIRECT')
-    ]
+    ],
+    'youtube' => [
+        'client_id' => env('YOUTUBE_ID'),
+        'client_secret' => env('YOUTUBE_SECRET'),
+        'redirect' => env('YOUTUBE_REDIRECT')
+    ],
 
 ];
