@@ -48,4 +48,9 @@ class User extends Authenticatable
        // });
        User::observe(UserObserver::class);
     }
+
+    public function accounts()
+    {
+        return $this->hasMany('App\SocialAccount');
+    }
 }

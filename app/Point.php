@@ -9,6 +9,6 @@ class Point extends Model
     protected static function boot()				
     {
     	parent::boot();
-    	static::addGlobalScope(PointScope())
+    	// static::addGlobalScope(PointScope::class);
     }
 }

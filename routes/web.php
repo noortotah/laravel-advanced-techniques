@@ -11,12 +11,17 @@
 |
 */
 
+Route::get('login/{provider}', 'Auth\SocialAccountController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\SocialAccountController@handleProviderCallback');
+
+
+
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
 
-Route::namespace('Web')->group(function(){
+Route::group(['namespace' => 'Web','middleware' => ['\App\Http\Middleware\LogTeam']],function(){
 	Route::resource('teams', 'TeamController');
 
 	Route::get('/teams/{team}/title', function(\App\Team $team) {
