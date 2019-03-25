@@ -75,6 +75,10 @@
                         <i class="fa fa-twitter"></i>
                         Login with Twitter
                     </a>
+                    <a href="{{ url('login/youtube') }}" class="btn btn-social btn-youtube">
+                        <i class="fa fa-youtube"></i>
+                        Login with Youtube
+                    </a>
                 </div>
             </div>
         </div>

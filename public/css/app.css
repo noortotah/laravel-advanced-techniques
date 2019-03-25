@@ -10695,6 +10695,14 @@ a.text-dark:focus {
   background-color: #369deb;
 }
 
+.btn-social.btn-youtube {
+  background-color: #c4302b;
+}
+
+.btn-social.btn-youtube:hover {
+  background-color: #b41f20;
+}
+
 .btn-social.btn-github {
   background-color: #444;
 }

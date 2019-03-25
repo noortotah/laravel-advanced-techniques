@@ -43,15 +43,23 @@ class SocialAccountController extends Controller
     		// if they have already, return user to log them on again
     		return $account->user;
     	} else {
+
     		//if that user has not logged in with this social account before
     		// check if they have an account with matching info (in this case email)
-    		$user = User::where('email', $socialUser->getEmail())->first();
+    		$user = User::where('email', $socialUser->getEmail())
+                        ->orWhere('email', $socialUser->getId().$provider.'@example.com')
+                        ->first();
 
     		if (! $user ) {
+
+                // if the socialUser doesn't container email 
+                $email = !is_null($socialUser->getEmail()) ? $socialUser->getEmail() : $socialUser->getId().$provider.'@example.com';
+                $name = !is_null($socialUser->getName()) ? $socialUser->getName() : 'No Name';
+                
     			//if no user record can be found , then create new user record
     			$user = User::create([
-    				'email' => $socialUser->getEmail(),
-    				'name' => $socialUser->getName(),
+    				'email' => $email,
+    				'name' => $name,
     			]);
     		}
     		// connect social account to new/old user record
