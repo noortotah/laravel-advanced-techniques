@@ -11,7 +11,7 @@ class PostController extends Controller
 {
     public function __construct()
     {
-      $this->middleware('auth', ['except' => ['show']]);
+      $this->middleware('auth', ['except' => ['show', 'search']]);
     }
     /**
      * Display a listing of the resource.
@@ -98,5 +98,21 @@ public function store(PostRequest $request)
     public function destroy(Post $post)
     {
         $post->destroy();
+    }
+
+    public function search(Request $request)
+    {
+        // dd($request->search);
+        if($request->has('search'))
+        {   
+            $request->flashOnly('search');
+            
+            // $results = Post::search($request->q)->get();
+            $results = Post::search($request->search)->paginate(15);
+
+        }else{
+            $results = [];
+        }
+        return view('posts.search')->withResults($results);
     }
 }
